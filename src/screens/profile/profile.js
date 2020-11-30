@@ -11,9 +11,11 @@ import {
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import { makeStyles } from "@material-ui/core/styles";
-import { getCaptions, getAllMyMedia } from "../../common/api";
+import { getAllMyMedia } from "../../common/api";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
+import ImageDetails from "./image-details";
+import { mockResponse } from "../../common/utilities";
 
 function getModalStyle() {
   const top = 50 + 10;
@@ -43,8 +45,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper
   },
   gridList: {
-    width: 800,
-    height: 650
+    width: 1000
   }
 }));
 
@@ -56,6 +57,7 @@ const Profile = () => {
   const [error, setError] = useState(false);
   const [fullName, setFullName] = useState("");
   const [images, setImages] = useState([]);
+  const [imageDetails, setImageDetails] = useState(null);
 
   const [userDetails, setUserDetails] = useState({
     fullName: "Upgrad Education",
@@ -77,7 +79,7 @@ const Profile = () => {
           totalPost: response.data.length,
           username: response.data[0].username
         });
-        setImages(response.data)
+        setImages(mockResponse(response.data));
       }
     });
   }, []);
@@ -103,6 +105,36 @@ const Profile = () => {
       fullName: fullName
     });
     setFullName("");
+  };
+
+  const likeHandler = () => {
+    images.forEach(item => {
+      if (item.id === imageDetails.id) {
+        if (item.likedByme) {
+          item.likes--;
+          item["likedByme"] = false;
+        } else {
+          item.likes++;
+          item["likedByme"] = true;
+        }
+
+        setImageDetails({ ...item });
+      }
+    });
+    setImages([...images]);
+  };
+
+  const commentHandler = comment => {
+    images.forEach(item => {
+      if (item.id === imageDetails.id) {
+        item.comments.push({
+          username: item.username,
+          comment: comment
+        });
+        setImageDetails({ ...item });
+      }
+    });
+    setImages([...images]);
   };
 
   return (
@@ -167,11 +199,23 @@ const Profile = () => {
         <GridList className={classes.gridList} cols={3}>
           {images.map(tile => (
             <GridListTile key={tile.id} cols={1}>
-              <img src={tile.media_url} alt={tile.caption} />
+              <img
+                src={tile.media_url}
+                alt={tile.id}
+                onClick={() => setImageDetails(tile)}
+              />
             </GridListTile>
           ))}
         </GridList>
       </div>
+      {imageDetails && (
+        <ImageDetails
+          imageDetails={imageDetails}
+          handleClose={() => setImageDetails(null)}
+          likeHandler={likeHandler}
+          commentHandler={commentHandler}
+        />
+      )}
     </div>
   );
 };

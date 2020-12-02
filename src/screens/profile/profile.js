@@ -58,6 +58,7 @@ const Profile = () => {
   const [fullName, setFullName] = useState("");
   const [images, setImages] = useState([]);
   const [imageDetails, setImageDetails] = useState(null);
+  const [userIcon] = useState(PROFILE_ICON);
 
   const [userDetails, setUserDetails] = useState({
     fullName: "Upgrad Education",
@@ -140,7 +141,7 @@ const Profile = () => {
   return (
     <div className="profile-container">
       <div className="user-info-container">
-        <Avatar src={PROFILE_ICON} className="profile-icon" />
+        <Avatar src={userIcon} className="profile-icon" />
         <div className="name-counts-container">
           <div>
             <strong>{userDetails.username}</strong>

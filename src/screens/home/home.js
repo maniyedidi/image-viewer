@@ -20,6 +20,7 @@ const Home = () => {
   const [imagesResponse, setImagesResponse] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [comments, setComments] = useState({});
+  const [userIcon] = useState(PROFILE_ICON);
 
   useEffect(() => {
     getAllMyMedia()
@@ -80,7 +81,7 @@ const Home = () => {
         return (
           <Card key={item.id}>
             <CardHeader
-              avatar={<Avatar src={PROFILE_ICON} />}
+              avatar={<Avatar src={userIcon} />}
               title={item.username}
               subheader={formatDate(item.timestamp)}
             />

@@ -15,7 +15,7 @@ const USER_DETAILS = {
   userName: "user",
   password: "user",
   access_token:
-    "IGQVJVWF9zMXpfLTlmZAzAtR2lCWFVhOUM5SXRNelptclZABWjFGYXFucGZAtVlZAwbFZAvY3c2YXNRTzcxaTY3YUR2YmlvVklkNjk0dnRHUjV4OVZAiZA2RELTJxeEN4WC1sX0tWVzZAZAZA2tOVDZAuc2Nlb3p3RAZDZD"
+    "IGQVJVcEVXUlJadHlLTHVFSm9lWmw2REM3UjM2ZA3oxQnl0dVJoNkJydExDaUtNRVprRzdIc2FyWEhlWE9Ud3haV3BGOHJ3MnJfbWdZAWHNqQ21qRTZAyOG9EYkRxWEVWZAkNYZA05sTlZAzYmFEQjN6Ym5MNQZDZD"
 };
 const Login = () => {
   const { setIsLoggedIn } = useContext(AppContext);

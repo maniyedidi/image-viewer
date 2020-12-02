@@ -7,6 +7,7 @@ import { AppProvider } from "./common/app-context";
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchKey, setSearchKey] = useState("");
+  const [currentRoute, setCurrentRoute] = useState("/");
 
   return (
     <AppProvider
@@ -14,7 +15,9 @@ const App = () => {
         searchKey,
         setSearchKey,
         isLoggedIn,
-        setIsLoggedIn
+        setIsLoggedIn,
+        currentRoute,
+        setCurrentRoute
       }}
     >
       <AppRouter />

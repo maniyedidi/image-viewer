@@ -1,22 +1,22 @@
-import React, { useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import "./header.css";
-import {
-  TextField,
-  Menu,
-  MenuItem,  
-  IconButton
-} from "@material-ui/core";
+import { TextField, Menu, MenuItem, IconButton } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import AppContext from "../app-context";
 import PROFILE_ICON from "../../assets/profile_icon.png";
 
 const Header = () => {
-  const { isLoggedIn, setIsLoggedIn, searchKey, setSearchKey } = useContext(
-    AppContext
-  );
+  const {
+    isLoggedIn,
+    setIsLoggedIn,
+    searchKey,
+    setSearchKey,
+    currentRoute
+  } = useContext(AppContext);
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [userIcon] = useState(PROFILE_ICON);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -47,7 +47,7 @@ const Header = () => {
       <span className="app-logo">Image Viewer</span>
       {isLoggedIn && (
         <div className="right-container">
-          {window.location.pathname === "/home" && (
+          {currentRoute === "/home" && (
             <TextField
               id="outlined-basic"
               className="search-damage-id"
@@ -62,7 +62,7 @@ const Header = () => {
           )}
           <div className="avatar-menu">
             <IconButton onClick={handleClick}>
-              <img src={PROFILE_ICON} className="profile-pic" />
+              <img src={userIcon} className="profile-pic" alt="user" />
             </IconButton>
             <Menu
               id="simple-menu"
@@ -71,7 +71,7 @@ const Header = () => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              {window.location.pathname === "/home" && (
+              {currentRoute === "/home" && (
                 <MenuItem
                   onClick={() => {
                     handleClose();
@@ -81,7 +81,7 @@ const Header = () => {
                   My Account
                 </MenuItem>
               )}
-             {window.location.pathname === "/home" &&  <hr />}
+              {currentRoute === "/home" && <hr />}
               <MenuItem onClick={logoutHandler}>Logout</MenuItem>
             </Menu>
           </div>

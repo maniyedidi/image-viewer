@@ -1,7 +1,12 @@
 import React, { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import "./header.css";
-import { TextField, Menu, MenuItem, Avatar } from "@material-ui/core";
+import {
+  TextField,
+  Menu,
+  MenuItem,  
+  IconButton
+} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import AppContext from "../app-context";
 import PROFILE_ICON from "../../assets/profile_icon.png";
@@ -46,7 +51,7 @@ const Header = () => {
             <TextField
               id="outlined-basic"
               className="search-damage-id"
-              placeholder="Search"
+              placeholder="Search..."
               variant="outlined"
               value={searchKey}
               onChange={event => setSearchKey(event.target.value)}
@@ -56,7 +61,9 @@ const Header = () => {
             />
           )}
           <div className="avatar-menu">
-            <Avatar src={PROFILE_ICON} onClick={handleClick} />
+            <IconButton onClick={handleClick}>
+              <img src={PROFILE_ICON} className="profile-pic" />
+            </IconButton>
             <Menu
               id="simple-menu"
               anchorEl={anchorEl}
@@ -74,7 +81,7 @@ const Header = () => {
                   My Account
                 </MenuItem>
               )}
-              <hr />
+             {window.location.pathname === "/home" &&  <hr />}
               <MenuItem onClick={logoutHandler}>Logout</MenuItem>
             </Menu>
           </div>

@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     position: "absolute",
     width: 300,
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
+    border: "2px solid #7f7f7f",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3)
   },
@@ -165,7 +165,7 @@ const Profile = () => {
               aria-labelledby="simple-modal-title"
               aria-describedby="simple-modal-description"
             >
-              <div style={modalStyle} className={classes.editFormContainer}>
+              <div id="editFormContainer" style={modalStyle} className={classes.editFormContainer}>
                 <h2 id="modal-title">Edit</h2>
                 <FormControl fullWidth={true}>
                   <InputLabel htmlFor="my-input">Full Name *</InputLabel>

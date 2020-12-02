@@ -40,7 +40,7 @@ const Header = () => {
 
   return (
     <div className="header-container">
-      <span className="app-logo" >Image Viewer</span>
+      <span className="app-logo">Image Viewer</span>
       {isLoggedIn && (
         <div className="right-container">
           {window.location.pathname === "/home" && (

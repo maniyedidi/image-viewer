@@ -7,9 +7,13 @@ import AppContext from "../app-context";
 import PROFILE_ICON from "../../assets/profile_icon.png";
 
 const Header = () => {
-  const { isLoggedIn, setIsLoggedIn, searchKey, setSearchKey } = useContext(
-    AppContext
-  );
+  const {
+    isLoggedIn,
+    setIsLoggedIn,
+    searchKey,
+    setSearchKey,
+    currentRoute
+  } = useContext(AppContext);
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [userIcon] = useState(PROFILE_ICON);
@@ -43,7 +47,7 @@ const Header = () => {
       <span className="app-logo">Image Viewer</span>
       {isLoggedIn && (
         <div className="right-container">
-          {window.location.pathname === "/home" && (
+          {currentRoute === "/home" && (
             <TextField
               id="outlined-basic"
               className="search-damage-id"
@@ -67,7 +71,7 @@ const Header = () => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              {window.location.pathname === "/home" && (
+              {currentRoute === "/home" && (
                 <MenuItem
                   onClick={() => {
                     handleClose();
@@ -77,7 +81,7 @@ const Header = () => {
                   My Account
                 </MenuItem>
               )}
-              {window.location.pathname === "/home" && <hr />}
+              {currentRoute === "/home" && <hr />}
               <MenuItem onClick={logoutHandler}>Logout</MenuItem>
             </Menu>
           </div>

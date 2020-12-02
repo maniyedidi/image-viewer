@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PROFILE_ICON from "../../assets/profile_icon.png";
 import "./profile.css";
 import {
@@ -16,6 +16,7 @@ import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import ImageDetails from "./image-details";
 import { mockResponse } from "../../common/utilities";
+import AppContext from "../../common/app-context";
 
 function getModalStyle() {
   const top = 50 + 10;
@@ -50,6 +51,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Profile = () => {
+  const { setCurrentRoute } = useContext(AppContext);
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = useState(getModalStyle);
@@ -69,6 +71,7 @@ const Profile = () => {
   });
 
   useEffect(() => {
+    setCurrentRoute("/profile");
     getAllMyMedia().then(response => {
       if (
         response.data &&
@@ -166,7 +169,11 @@ const Profile = () => {
               aria-labelledby="simple-modal-title"
               aria-describedby="simple-modal-description"
             >
-              <div id="editFormContainer" style={modalStyle} className={classes.editFormContainer}>
+              <div
+                id="editFormContainer"
+                style={modalStyle}
+                className={classes.editFormContainer}
+              >
                 <h2 id="modal-title">Edit</h2>
                 <FormControl fullWidth={true}>
                   <InputLabel htmlFor="my-input">Full Name *</InputLabel>

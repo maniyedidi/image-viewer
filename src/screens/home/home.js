@@ -16,13 +16,14 @@ import {
 import AppContext from "../../common/app-context";
 import { Favorite, FavoriteBorder } from "@material-ui/icons";
 const Home = () => {
-  const { searchKey } = useContext(AppContext);
+  const { searchKey, setCurrentRoute } = useContext(AppContext);
   const [imagesResponse, setImagesResponse] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [comments, setComments] = useState({});
   const [userIcon] = useState(PROFILE_ICON);
 
   useEffect(() => {
+    setCurrentRoute("/home");
     getAllMyMedia()
       .then(res => {
         setImagesResponse(mockResponse(res.data || []));

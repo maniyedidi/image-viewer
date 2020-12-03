@@ -45,7 +45,7 @@ const Login = () => {
       });
       sessionStorage.setItem("access_token", USER_DETAILS.access_token);
       history.push("/home");
-      setIsLoggedIn(true)
+      setIsLoggedIn(true);
     } else {
       setError({
         ...error,

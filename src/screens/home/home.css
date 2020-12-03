@@ -3,7 +3,7 @@
   flex-wrap: wrap;
 }
 .home-container .MuiCard-root {
-  width: calc(100vw/2 - 40px);
+  width: calc(100vw / 2 - 40px);
   margin: 20px;
 }
 
@@ -29,10 +29,10 @@
   align-items: center;
   padding: 20px 0px;
 }
-.comments-container{
+.comments-container {
   display: flex;
-  padding-top: 20px;  
+  padding-top: 20px;
 }
-.comments-container button{
+.comments-container button {
   margin-left: 10px;
 }

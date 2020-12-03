@@ -103,7 +103,7 @@ const modalDetails = ({
                 ) : (
                   <FavoriteBorderOutlinedIcon />
                 )}
-                {modalDetails.likes && <span>{modalDetails.likes} likes</span>}
+                {modalDetails.likes && <span className="likes-count">{modalDetails.likes} likes</span>}
               </div>
 
               <div className="comments-container">

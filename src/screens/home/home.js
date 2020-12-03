@@ -113,7 +113,7 @@ const Home = () => {
                 ) : (
                   <FavoriteBorder />
                 )}
-                {item.likes && <span>{item.likes} likes</span>}
+                {item.likes && <span className="likes-count">{item.likes} likes</span>}
               </div>
               <div>
                 {item.comments.map((comment, index) => {

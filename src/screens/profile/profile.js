@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import { makeStyles } from "@material-ui/core/styles";
-import { getAllMyMedia } from "../../common/api";
+import { getAllMyMedia, getCaptions } from "../../common/api";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import ImageDetails from "./image-details";
@@ -72,7 +72,20 @@ const Profile = () => {
 
   useEffect(() => {
     setCurrentRoute("/profile");
+    initUserDetails();
     getAllMyMedia().then(response => {
+      if (
+        response.data &&
+        Array.isArray(response.data) &&
+        response.data.length > 0
+      ) {
+        setImages(mockResponse(response.data));
+      }
+    });
+  }, []);
+
+  const initUserDetails = () => {
+    getCaptions().then(response => {
       if (
         response.data &&
         Array.isArray(response.data) &&
@@ -83,10 +96,9 @@ const Profile = () => {
           totalPost: response.data.length,
           username: response.data[0].username
         });
-        setImages(mockResponse(response.data));
       }
     });
-  }, []);
+  };
 
   const handleOpen = () => {
     setFullName(userDetails.fullName);

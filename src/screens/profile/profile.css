@@ -39,13 +39,13 @@
   height: 20px;
 }
 
-.name-counts-container > div{
-    padding-bottom: 10px;
+.name-counts-container > div {
+  padding-bottom: 10px;
 }
 
-#editFormContainer .MuiFormControl-root{
-    padding-bottom: 30px;    
+#editFormContainer .MuiFormControl-root {
+  padding-bottom: 30px;
 }
-.MuiGridListTile-tile img{
+.MuiGridListTile-tile img {
   cursor: pointer;
 }

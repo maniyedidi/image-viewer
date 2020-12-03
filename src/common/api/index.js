@@ -12,14 +12,8 @@ export const getAllMyMedia = () => {
   ).then(res => res.json());
 };
 
-export const getAllMediaIds = mediaId => {
-  return fetch(
-    `${HOST_NAME}${mediaId}?fields=id,media_type,media_url,username,timestamp&access_token=${getAccessToken()}`
-  ).then(res => res.json());
-};
-
 export const getCaptions = () => {
   return fetch(
-    `${HOST_NAME}me/media?fields=id,caption,username&access_token=${getAccessToken()}`
+    `${HOST_NAME}me/media?fields=id,caption&access_token=${getAccessToken()}`
   ).then(res => res.json());
 };
